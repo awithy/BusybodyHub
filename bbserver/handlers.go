@@ -12,7 +12,6 @@ import (
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	log.Printf("Index " + r.URL.Path)
 	requestpath := r.URL.Path
 	if requestpath == "/" {
 		requestpath = "/index.html"
