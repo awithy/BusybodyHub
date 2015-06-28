@@ -17,12 +17,24 @@ func HostIndex(w http.ResponseWriter, r *http.Request) {
 		Host{Name: "Host 1"},
 		Host{Name: "Host 2"},
 	}
-	json.NewEncoder(w).Encode(hosts)
+
+	//TODO: Refactor
+	w.Header().Set("Content-Type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+	if err := json.NewEncoder(w).Encode(hosts); err != nil {
+		panic(err)
+	}
 }
 
 func HostDetail(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	hostId := vars["hostId"]
 	host := Host{Name: "Host " + hostId}
-	json.NewEncoder(w).Encode(host)
+
+	//TODO: Refactor
+	w.Header().Set("Content-Type", "application/json;charset=UTF-8")
+	w.WriteHeader(http.StatusOK)
+	if err := json.NewEncoder(w).Encode(host); err != nil {
+		panic(err)
+	}
 }
