@@ -15,27 +15,33 @@ type Routes []Route
 
 var routes = Routes{
 	Route{
-		"Index",
-		"GET",
-		"/",
-		Index,
-	},
-	Route{
 		"HostIndex",
 		"GET",
-		"/hosts",
+		"/api/hosts",
 		HostIndex,
 	},
 	Route{
 		"HostCreate",
 		"POST",
-		"/hosts",
+		"/api/hosts",
 		HostCreate,
 	},
 	Route{
 		"HostDetail",
 		"GET",
-		"/hosts/{hostId}",
+		"/api/hosts/{hostId}",
 		HostDetail,
+	},
+	Route{
+		"PublicCatchAll",
+		"GET",
+		`/{[a-zA-Z0-9=\-\/]+}`,
+		Index,
+	},
+	Route{
+		"Index",
+		"GET",
+		`/`,
+		Index,
 	},
 }

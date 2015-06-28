@@ -2,16 +2,24 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"path"
 
 	"github.com/gorilla/mux"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Welcome!")
+	log.Printf("Index " + r.URL.Path)
+	requestpath := r.URL.Path
+	if requestpath == "/" {
+		requestpath = "/index.html"
+	}
+	fp := path.Join("public", requestpath)
+	log.Printf("Serving file " + fp)
+	http.ServeFile(w, r, fp)
 }
 
 func HostIndex(w http.ResponseWriter, r *http.Request) {
