@@ -39,8 +39,8 @@ func HostDetail(w http.ResponseWriter, r *http.Request) {
 }
 
 type Host struct {
-	Name   string
-	Status bool
+	Name   string `json:"name"`
+	Status bool   `json:"status"`
 }
 
 type Hosts []Host
