@@ -16,7 +16,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	if requestpath == "/" {
 		requestpath = "/index.html"
 	}
-	fp := path.Join("public", requestpath)
+	fp := path.Join("bbwebapp/public", requestpath)
 	log.Printf("Serving file " + fp)
 	http.ServeFile(w, r, fp)
 }
