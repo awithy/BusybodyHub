@@ -71,3 +71,35 @@ func HostCreate(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 }
+
+func LoginAccount(w http.ResponseWriter, r *http.Request) {
+	var login Login
+	var account Account
+	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
+	if err != nil {
+		panic(err)
+	}
+	if err := r.Body.Close(); err != nil {
+		panic(err)
+	}
+	if err := json.Unmarshal(body, &login); err != nil {
+		w.Header().Set("Content-Type", "application/json;charset=UTF-8")
+		w.WriteHeader(422)
+		if err := json.NewEncoder(w).Encode(err); err != nil {
+			panic(err)
+		}
+	}
+	if login.Username != "Adrian" {
+		w.Header().Set("Content-Type", "application/json;charset=UTF-8")
+		w.WriteHeader(400) //TODO: Access denied
+		if err := json.NewEncoder(w).Encode(err); err != nil {
+			panic(err)
+		}
+	}
+	w.Header().Set("Content-Type", "application/json;charset=UTF-8")
+	w.WriteHeader(200)
+	account.Username = "Adrian"
+	if err := json.NewEncoder(w).Encode(account); err != nil {
+		panic(err)
+	}
+}

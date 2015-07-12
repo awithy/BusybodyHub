@@ -4,12 +4,12 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q) {
             var dfd = $q.defer();
 
             //TODO: Temp
-            mvIdentity.currentUser = { username:username };
-            dfd.resolve(true);
-            return dfd.promise;
+            //mvIdentity.currentUser = { username:username };
+            //dfd.resolve(true);
+            //return dfd.promise;
 
-            $http.post('/api/login', { username:username, password:password }).then(function(response){
-                if(response.data.success) {
+            $http.post('/api/account/login', { username:username, password:password }).then(function(response){
+                if(response.data && response.data.username) {
                     mvIdentity.currentUser = response.data;
                     dfd.resolve(true);
                 } else {

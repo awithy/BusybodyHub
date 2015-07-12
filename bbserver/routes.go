@@ -32,24 +32,12 @@ var routes = Routes{
 		"/api/hosts/{hostId}",
 		HostDetail,
 	},
-	//Route{
-	//"app",
-	//"GET",
-	//`/app/{[a-zA-Z0-9=\-\/]+}`,
-	//Index,
-	//},
-	//Route{ //TODO: Refactor
-	//"app_navbar",
-	//"GET",
-	//`/app/navbar/{[a-zA-Z0-9=\-\/]+}`,
-	//Index,
-	//},
-	//Route{ //TODO: Refactor
-	//"app_navbar",
-	//"GET",
-	//`/app/welcome/{[a-zA-Z0-9=\-\/]+}`,
-	//Index,
-	//},
+	Route{
+		"LoginAccount",
+		"POST",
+		"/api/account/login",
+		LoginAccount,
+	},
 	Route{
 		"PublicCatchAll6", //TODO: Get rid of this crap by learning some damn RegEx.  This was done without Internet :(
 		"GET",
