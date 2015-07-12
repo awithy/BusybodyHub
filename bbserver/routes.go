@@ -32,6 +32,54 @@ var routes = Routes{
 		"/api/hosts/{hostId}",
 		HostDetail,
 	},
+	//Route{
+	//"app",
+	//"GET",
+	//`/app/{[a-zA-Z0-9=\-\/]+}`,
+	//Index,
+	//},
+	//Route{ //TODO: Refactor
+	//"app_navbar",
+	//"GET",
+	//`/app/navbar/{[a-zA-Z0-9=\-\/]+}`,
+	//Index,
+	//},
+	//Route{ //TODO: Refactor
+	//"app_navbar",
+	//"GET",
+	//`/app/welcome/{[a-zA-Z0-9=\-\/]+}`,
+	//Index,
+	//},
+	Route{
+		"PublicCatchAll6", //TODO: Get rid of this crap by learning some damn RegEx.  This was done without Internet :(
+		"GET",
+		`/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}`,
+		Index,
+	},
+	Route{
+		"PublicCatchAll5",
+		"GET",
+		`/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}`,
+		Index,
+	},
+	Route{
+		"PublicCatchAll4",
+		"GET",
+		`/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}`,
+		Index,
+	},
+	Route{
+		"PublicCatchAll3",
+		"GET",
+		`/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}`,
+		Index,
+	},
+	Route{
+		"PublicCatchAll2",
+		"GET",
+		`/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}`,
+		Index,
+	},
 	Route{
 		"PublicCatchAll",
 		"GET",
