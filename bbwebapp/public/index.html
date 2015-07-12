@@ -13,20 +13,20 @@
         <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="vendor/toastr/toastr.min.css">
-        <!--<link rel="stylesheet" href="css/main.css">-->
+        <link rel="stylesheet" href="css/main.css">
     </head>
-    <!--<body ng-app="app">-->
     <body ng-app="app">
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <!--<div ng-controller="mvIndex">-->
+        <div ng-controller="mvIndex">
         <div>
             <div ng-include src="'/app/navbar/navbar.html'"></div>
             <div class="container">
-                <!--<div ng-include src="'/app/welcome/welcome.html'"></div>-->
-                <!--<div ng-include ng-hide="identity.isAuthenticated()" src="'app/welcome/welcome.html'"></div>-->
-                <!--<div ng-view ng-show="identity.isAuthenticated()"></div>-->
+                <div ng-include ng-hide="identity.isAuthenticated()" src="'app/welcome/welcome.html'"></div>
+                <div ng-include ng-show="identity.isAuthenticated()" src="'app/sites/sites.html'"></div>
+                <!-- Needs routing -->
+                <!--<div ng-view ng-show="identity.isAuthenticated()" src="'app/sites/sites.html'"></div>-->
             </div>
         </div>
         <footer class="container text-center">
@@ -40,6 +40,11 @@
         <script src="vendor/toastr/toastr.min.js"></script>
         <!--script src="vendor/moment/moment.js"></script>-->
         <script src="js/main.js"></script>
+        <script src="app/notify/mvNotify.js"></script>
+        <script src="app/account/mvIdentity.js"></script>
+        <script src="js/mvIndex.js"></script>
+        <script src="app/account/mvAuth.js"></script>
+        <script src="app/account/mvNavbarLoginCtrl.js"></script>
         <script src="app/navbar/mvNavbarCtrl.js"></script>
     </body>
 </html>
