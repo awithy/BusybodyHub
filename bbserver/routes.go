@@ -39,39 +39,9 @@ var routes = Routes{
 		LoginAccount,
 	},
 	Route{
-		"PublicCatchAll6", //TODO: Get rid of this crap by learning some damn RegEx.  This was done without Internet :(
-		"GET",
-		`/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}`,
-		Index,
-	},
-	Route{
-		"PublicCatchAll5",
-		"GET",
-		`/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}`,
-		Index,
-	},
-	Route{
-		"PublicCatchAll4",
-		"GET",
-		`/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}`,
-		Index,
-	},
-	Route{
-		"PublicCatchAll3",
-		"GET",
-		`/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}`,
-		Index,
-	},
-	Route{
-		"PublicCatchAll2",
-		"GET",
-		`/{[a-zA-Z0-9=\-\/]+}/{[a-zA-Z0-9=\-\/]+}`,
-		Index,
-	},
-	Route{
 		"PublicCatchAll",
 		"GET",
-		`/{[a-zA-Z0-9=\-\/]+}`,
+		`/{a:.+}`,
 		Index,
 	},
 	Route{

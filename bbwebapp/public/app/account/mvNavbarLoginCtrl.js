@@ -13,6 +13,7 @@ angular.module('app').controller('mvNavbarLoginCtrl', function($scope, $http, mv
             }
             else {
                 mvNotifier.error('Not logged in');
+                console.log("NOT");
             }
         })
     };
