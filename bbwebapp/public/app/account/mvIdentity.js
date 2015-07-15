@@ -7,7 +7,6 @@ angular.module('app').factory('mvIdentity', function($window) {
     return {
         currentUser: currentUser,
         isAuthenticated: function () {
-            console.log("auth:" + !!this.currentUser);
             return !!this.currentUser;
         },
         isAuthorized: function () {

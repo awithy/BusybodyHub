@@ -4,20 +4,14 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q) {
             var dfd = $q.defer();
 
             $http.post('/api/account/login', { username:username, password:password }).then(function(response){
-                if(response.data && response.data.username) {
-                    //mvIdentity.currentUser = response.data;  //This is the line that was pissing me off.
-                    mvIdentity.currentUser = { username:"Adrian" }
+                if(response.data && response.data.success) {
+                    mvIdentity.currentUser = { username:username }
                     dfd.resolve(true);
                 } else {
                     dfd.resolve(false);
                 }
             })
             return dfd.promise;
-            
-            //TODO: Temp
-            //mvIdentity.currentUser = { username:username };
-            //dfd.resolve(true);
-            //return dfd.promise;
         },
         signOut: function() {
             var dfd = $q.defer();
