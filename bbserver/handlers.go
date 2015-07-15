@@ -91,7 +91,7 @@ func LoginAccount(w http.ResponseWriter, r *http.Request) {
 	}
 	if login.Username != "Adrian" {
 		w.Header().Set("Content-Type", "application/json;charset=UTF-8")
-		w.WriteHeader(400) //TODO: Access denied
+		w.WriteHeader(http.StatusUnauthorized)
 		if err := json.NewEncoder(w).Encode(err); err != nil {
 			panic(err)
 		}
