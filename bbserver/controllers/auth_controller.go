@@ -2,10 +2,12 @@ package controllers
 
 import (
 	"encoding/json"
+	"github.com/dgrijalva/jwt-go"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/awithy/busybodyhub/bbserver/models"
 )
@@ -35,14 +37,27 @@ func LoginAccount(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(200)
 
 	if strings.ToLower(login.Username) == "admin" && login.Password == "busybody" {
+
+		token := jwt.New(jwt.GetSigningMethod("HS256"))
+		token.Claims["userid"] = login.Username
+		token.Claims["exp"] = time.Now().Add(time.Minute * 5).Unix()
+		tokenString, err := token.SignedString([]byte("secret key"))
+
+		if err != nil {
+			panic("Error creating token string")
+		}
+
 		loginResult = models.LoginResult{
 			true,
 			"Login successful",
+			tokenString,
 		}
+
 	} else {
 		loginResult = models.LoginResult{
 			false,
 			"Invalid username and/or password",
+			"",
 		}
 	}
 
