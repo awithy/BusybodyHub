@@ -2,6 +2,8 @@ package main
 
 import (
 	"net/http"
+
+	"github.com/awithy/busybodyhub/bbserver/controllers"
 )
 
 type Route struct {
@@ -15,28 +17,10 @@ type Routes []Route
 
 var routes = Routes{
 	Route{
-		"HostIndex",
-		"GET",
-		"/api/hosts",
-		HostIndex,
-	},
-	Route{
-		"HostCreate",
-		"POST",
-		"/api/hosts",
-		HostCreate,
-	},
-	Route{
-		"HostDetail",
-		"GET",
-		"/api/hosts/{hostId}",
-		HostDetail,
-	},
-	Route{
 		"LoginAccount",
 		"POST",
 		"/api/account/login",
-		LoginAccount,
+		controllers.LoginAccount,
 	},
 	Route{
 		"PublicCatchAll",
