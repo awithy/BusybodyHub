@@ -1,8 +1,8 @@
 angular.module('app').factory('mvIdentity', function($window) {
     var currentUser = undefined;
-    if(!!$window.bootstrappedUserObject){
-        currentUser = {};
-        angular.extend(currentUser, $window.bootstrappedUserObject);
+    var locallyStoredUser = localStorage.getItem('currentUser');
+    if(!!locallyStoredUser) {
+        currentUser = JSON.parse(locallyStoredUser);
     }
     return {
         currentUser: currentUser,

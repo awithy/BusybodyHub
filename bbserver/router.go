@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 
+	"github.com/awithy/busybodyhub/bbserver/middleware"
 	"github.com/gorilla/mux"
 )
 
@@ -11,10 +12,10 @@ func NewRouter() *mux.Router {
 	for _, route := range routes {
 		var handler http.Handler
 		handler = route.HandlerFunc
-		handler = Logger(handler, route.Name)
+		handler = middleware.Logger(handler, route.Name)
 
 		if route.Auth {
-			handler = AuthToken(handler)
+			handler = middleware.AuthToken(handler)
 		}
 
 		router.

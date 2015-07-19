@@ -1,10 +1,11 @@
-package main
+package middleware
 
 import (
-	jwt "github.com/dgrijalva/jwt-go"
 	"log"
 	"net/http"
 	"strings"
+
+	"github.com/awithy/busybodyhub/bbserver/services"
 )
 
 func AuthToken(inner http.Handler) http.Handler {
@@ -13,10 +14,8 @@ func AuthToken(inner http.Handler) http.Handler {
 		authHeader := r.Header.Get("Authorization")
 		tokenString := strings.Replace(authHeader, "Bearer ", "", 1)
 
-		token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-			return []byte("secret"), nil
-		})
-		if err == nil && token.Valid {
+		err := services.Verify(tokenString)
+		if err == nil {
 			inner.ServeHTTP(w, r)
 			log.Printf("Auth success")
 		} else {

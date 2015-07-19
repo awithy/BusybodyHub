@@ -6,6 +6,7 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q) {
             $http.post('/api/account/login', { username:username, password:password }).then(function(response){
                 if(response.data && response.data.success) {
                     mvIdentity.currentUser = { username:username, token:response.data.token }
+                    localStorage.setItem('currentUser', JSON.stringify(mvIdentity.currentUser));
                     dfd.resolve(true);
                 } else {
                     dfd.resolve(false);
@@ -15,15 +16,11 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q) {
         },
         signOut: function() {
             var dfd = $q.defer();
-
             $http.post('/api/account/logout', {}).then(function(response){
-                if(response.data.success) {
-                    mvIdentity.currentUser = undefined;
-                    dfd.resolve(true);
-                } else {
-                    dfd.resolve(false);
-                }
-            })
+                mvIdentity.currentUser = undefined;
+                localStorage.removeItem('currentUser');
+                dfd.resolve(true);
+            });
             return dfd.promise;
         },
         refreshLogin: function() {
