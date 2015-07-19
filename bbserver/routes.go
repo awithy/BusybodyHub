@@ -42,14 +42,14 @@ var routes = Routes{
 		"PublicCatchAll",
 		"GET",
 		`/{a:.+}`,
-		Index,
+		controllers.Index,
 		false,
 	},
 	Route{
 		"Index",
 		"GET",
 		`/`,
-		Index,
+		controllers.Index,
 		false,
 	},
 }

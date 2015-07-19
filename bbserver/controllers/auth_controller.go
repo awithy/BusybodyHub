@@ -66,6 +66,7 @@ func LoginAccount(w http.ResponseWriter, r *http.Request) {
 func RefreshLogin(w http.ResponseWriter, r *http.Request) {
 	authHeader := r.Header.Get("Authorization")
 	tokenString := strings.Replace(authHeader, "Bearer ", "", 1)
+	w.Header().Set("Content-Type", "application/json;charset=UTF-8")
 
 	var loginResult models.LoginResult
 	tokenString, err := services.RefreshToken(tokenString)
