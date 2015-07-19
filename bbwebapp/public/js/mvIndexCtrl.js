@@ -1,3 +1,3 @@
-angular.module('app').controller('mvIndex', function($scope, mvIdentity) {
+angular.module('app').controller('mvIndexCtrl', function($scope, mvIdentity) {
     $scope.identity = mvIdentity;
 });
