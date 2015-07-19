@@ -14,7 +14,7 @@ func AuthToken(inner http.Handler) http.Handler {
 		authHeader := r.Header.Get("Authorization")
 		tokenString := strings.Replace(authHeader, "Bearer ", "", 1)
 
-		err := services.Verify(tokenString)
+		err := services.VerifyToken(tokenString)
 		if err == nil {
 			inner.ServeHTTP(w, r)
 			log.Printf("Auth success")

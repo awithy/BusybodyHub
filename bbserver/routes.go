@@ -32,6 +32,13 @@ var routes = Routes{
 		true,
 	},
 	Route{
+		"RefreshLogin",
+		"POST",
+		"/api/account/refresh",
+		controllers.RefreshLogin,
+		true,
+	},
+	Route{
 		"PublicCatchAll",
 		"GET",
 		`/{a:.+}`,

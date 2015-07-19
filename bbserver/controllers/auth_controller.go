@@ -63,6 +63,32 @@ func LoginAccount(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func RefreshLogin(w http.ResponseWriter, r *http.Request) {
+	authHeader := r.Header.Get("Authorization")
+	tokenString := strings.Replace(authHeader, "Bearer ", "", 1)
+
+	var loginResult models.LoginResult
+	tokenString, err := services.RefreshToken(tokenString)
+
+	if err == nil {
+		loginResult = models.LoginResult{
+			true,
+			"Refresh successful",
+			tokenString,
+		}
+	} else {
+		loginResult = models.LoginResult{
+			false,
+			"Refresh failed",
+			"",
+		}
+	}
+
+	if err := json.NewEncoder(w).Encode(loginResult); err != nil {
+		panic(err)
+	}
+}
+
 func Logout(w http.ResponseWriter, r *http.Request) {
 	log.Printf("Logged out")
 }

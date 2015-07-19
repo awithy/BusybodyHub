@@ -26,14 +26,10 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q) {
         refreshLogin: function() {
             var dfd = $q.defer();
             
-            //TODO: Temp
-            mvIdentity.currentUser = { username:username };
-            dfd.resolve(true);
-            return dfd.promise;
-
-            $http.post('/api/refreshLogin', {}).then(function(response){
+            $http.post('/api/account/refresh', {}).then(function(response){
                 if(response.data.success) {
-                    mvIdentity.currentUser = response.data;
+                    mvIdentity.currentUser.token = response.data.token
+                    localStorage.setItem('currentUser', JSON.stringify(mvIdentity.currentUser));
                     dfd.resolve(true);
                 } else {
                     dfd.resolve(false);

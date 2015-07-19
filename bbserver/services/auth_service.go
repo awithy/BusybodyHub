@@ -15,7 +15,7 @@ func NewToken(username string) (string, error) {
 	return tokenString, err
 }
 
-func Verify(tokenString string) error {
+func VerifyToken(tokenString string) error {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
 		return []byte("secret"), nil
 	})
@@ -23,5 +23,19 @@ func Verify(tokenString string) error {
 		return nil
 	} else {
 		return errors.New("Invalid token")
+	}
+}
+
+func RefreshToken(tokenString string) (string, error) {
+	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		return []byte("secret"), nil
+	})
+	if err == nil && token.Valid {
+		token.Claims["exp"] = time.Now().Add(time.Minute * 5).Unix()
+		tokenString, err := token.SignedString([]byte("secret"))
+		return tokenString, err
+
+	} else {
+		return "", errors.New("Invalid token")
 	}
 }
