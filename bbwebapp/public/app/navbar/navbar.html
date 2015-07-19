@@ -11,7 +11,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav" ng-controller="mvNavbarCtrl" ng-show="identity.isAuthenticated()">
-                <li ng-class="{active: page=='hosts'}"><a class="nav" href="#/hosts" ng-click="showView('#/hosts')">Hosts</a></li>
+                <li ng-class="{active: page=='sites'}"><a class="nav" href="#/sites" ng-click="showView('#/sites')">Sites</a></li>
                 <li ng-class="{active: page=='eventLog'}"><a href="#/eventLog" ng-click="showView('#/eventLog')">Event Log</a></li>
                 <li ng-class="{active: page=='systemStatus'}"><a href="#/systemStatus" ng-click="showView('#/systemStatus')">System Status</a></li>
                 <li ng-class="{active: page=='config'}"><a href="#/config" ng-click="showView('#/config')">Config</a></li>
