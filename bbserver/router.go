@@ -13,6 +13,10 @@ func NewRouter() *mux.Router {
 		handler = route.HandlerFunc
 		handler = Logger(handler, route.Name)
 
+		if route.Auth {
+			handler = AuthToken(handler)
+		}
+
 		router.
 			Methods(route.Method).
 			Path(route.Pattern).

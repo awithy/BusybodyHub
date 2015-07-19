@@ -11,6 +11,7 @@ type Route struct {
 	Method      string
 	Pattern     string
 	HandlerFunc http.HandlerFunc
+	Auth        bool
 }
 
 type Routes []Route
@@ -21,17 +22,27 @@ var routes = Routes{
 		"POST",
 		"/api/account/login",
 		controllers.LoginAccount,
+		false,
+	},
+	Route{
+		"Logout",
+		"POST",
+		"/api/account/logout",
+		controllers.Logout,
+		true,
 	},
 	Route{
 		"PublicCatchAll",
 		"GET",
 		`/{a:.+}`,
 		Index,
+		false,
 	},
 	Route{
 		"Index",
 		"GET",
 		`/`,
 		Index,
+		false,
 	},
 }

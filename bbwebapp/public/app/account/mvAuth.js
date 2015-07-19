@@ -5,7 +5,7 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q) {
 
             $http.post('/api/account/login', { username:username, password:password }).then(function(response){
                 if(response.data && response.data.success) {
-                    mvIdentity.currentUser = { username:username }
+                    mvIdentity.currentUser = { username:username, token:response.data.token }
                     dfd.resolve(true);
                 } else {
                     dfd.resolve(false);
@@ -16,12 +16,7 @@ angular.module('app').factory('mvAuth', function($http, mvIdentity, $q) {
         signOut: function() {
             var dfd = $q.defer();
 
-            //TODO: Temp
-            mvIdentity.currentUser = undefined;
-            dfd.resolve(true);
-            return dfd.promise;
-
-            $http.post('/api/logout', {}).then(function(response){
+            $http.post('/api/account/logout', {}).then(function(response){
                 if(response.data.success) {
                     mvIdentity.currentUser = undefined;
                     dfd.resolve(true);

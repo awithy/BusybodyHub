@@ -5,6 +5,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"strings"
 	"time"
@@ -41,7 +42,7 @@ func LoginAccount(w http.ResponseWriter, r *http.Request) {
 		token := jwt.New(jwt.GetSigningMethod("HS256"))
 		token.Claims["userid"] = login.Username
 		token.Claims["exp"] = time.Now().Add(time.Minute * 5).Unix()
-		tokenString, err := token.SignedString([]byte("secret key"))
+		tokenString, err := token.SignedString([]byte("secret"))
 
 		if err != nil {
 			panic("Error creating token string")
@@ -64,4 +65,8 @@ func LoginAccount(w http.ResponseWriter, r *http.Request) {
 	if err := json.NewEncoder(w).Encode(loginResult); err != nil {
 		panic(err)
 	}
+}
+
+func Logout(w http.ResponseWriter, r *http.Request) {
+	log.Printf("Logged out")
 }
